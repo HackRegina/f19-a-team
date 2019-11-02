@@ -3,12 +3,17 @@
   <form id="pickup-request" [formGroup]="requestFormGroup" (submit)="submitRequest()">
     <div class="mb-4">
       <span class="form-label">
-        Location:
+        Needle Location:
+      </span>
+      <span *ngIf="requestFormGroup.get('latitude').value && requestFormGroup.get('longitude').value">
+        Current Location [
+        {{requestFormGroup.get('latitude').value | number : '1.1-5'}} ,
+        {{requestFormGroup.get('longitude').value | number : '1.1-5'}}]
       </span>
     </div>
     <div class="mb-4">
       <label class="form-label" for="description">
-        Description of Needle Location
+        Description of Needle MapLocation
       </label>
       <textarea class="txt-area focus:outline-none focus:shadow-outline"
                 formControlName="description"

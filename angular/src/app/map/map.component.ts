@@ -7,6 +7,8 @@ import VectorSource from 'ol/source/Vector';
 import OlVector from 'ol/layer/Vector';
 import {Point} from 'ol/geom';
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
+import {MapService} from "../services/map/map.service";
+import {MapLocation} from "../data/map-location";
 
 @Component({
   selector: 'app-map',
@@ -24,7 +26,7 @@ export class MapComponent implements OnInit {
 
   private geoLocationFirstFound: boolean;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
     this.initMap();
@@ -48,17 +50,6 @@ export class MapComponent implements OnInit {
       view: this.view
     });
 
-    const positionMarker = new Feature({
-      geometry: new Point(transform([-104.6189, 50.4452], 'EPSG:4326', 'EPSG:3857')),
-      style: new Style({
-        image: new CircleStyle({
-          radius: 6,
-          fill: new Fill({color: '#3399CC'}),
-          stroke: new Stroke({ color: '#fff', width: 2 })
-        })
-      })
-    });
-
     this.currentLocationMarker = new Feature({
       geometry: null,
       style: new Style({
@@ -73,7 +64,7 @@ export class MapComponent implements OnInit {
     this.currentPositionLayer = new OlVector({
       map: this.map,
       source: new VectorSource({
-        features: [positionMarker, this.currentLocationMarker]
+        features: [this.currentLocationMarker]
       })
     });
   }
@@ -89,6 +80,10 @@ export class MapComponent implements OnInit {
     this.geolocation.setTracking(true);
 
     this.geolocation.on('change:position', () => {
+      const mapLocation: MapLocation = this.geolocation.getPosition() ?
+        {longitude: this.geolocation.getPosition()[0], latitude: this.geolocation.getPosition()[1], } as MapLocation
+        : null;
+      this.mapService.setCurrentLocation(mapLocation);
       const coordinates = transform(this.geolocation.getPosition(), 'EPSG:4326', 'EPSG:3857');
       console.log('coordinates > ', coordinates);
       this.currentLocationMarker.setGeometry(coordinates ? new Point(coordinates) : null);
