@@ -51,7 +51,7 @@ namespace NeedleBuddy.API.Controllers
         [HttpGet("list")]
         public List<PickupRequestViewModel> ListAllPickupRequests()
         {
-            
+            throw new NotImplementedException();
         }
 
         [HttpPut("update")]

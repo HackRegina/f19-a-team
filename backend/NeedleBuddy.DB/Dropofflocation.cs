@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NeedleBuddy.DB
 {
-    [Table("newtable")]
+    [Table("dropofflocation")]
     public partial class Dropofflocation
     {
         [Column("description")]

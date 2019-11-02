@@ -26,5 +26,7 @@ namespace NeedleBuddy.DB
         public double? LocationLat { get; set; }
         [Column("location_long")]
         public double? LocationLong { get; set; }
+        [Column("last_modified", TypeName = "date")]
+        public DateTime? LastModified { get; set; }
     }
 }
