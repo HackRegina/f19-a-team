@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using NeedleBuddy.DB.ViewModels;
+using Microsoft.EntityFrameworkCore;
+using NeedleBuddy.DB;
 
 namespace NeedleBuddy.DB
 {
@@ -10,15 +12,23 @@ namespace NeedleBuddy.DB
         {
             // TODO
         }
-
-        public PickupRequestViewModel CreatePickupRequest(PickupRequestViewModel prvm)
+        
+        public Pickuprequest CreatePickupRequest(Pickuprequest prm)
         {
-            throw new NotImplementedException();
+            Pickuprequest dbResponse = new Pickuprequest();
+            using(var _context = new NeedleBuddyContext())
+            {
+                _context.Add(prm);
+                _context.SaveChanges();
+                dbResponse = _context.Pickuprequest.Find(prm.Id);
+            }
+            return dbResponse;
         }
 
-        public List<DropOffLocationViewModel> FindAllDropoffLocations()
+        public List<DropOffLocation> FindAllDropoffLocations()
         {
-            throw new NotImplementedException();
+            List<Dropofflocation> dropLocs = new List<Dropofflocation>();
+            using (var _context = new )
         }
 
         public List<PickupRequestViewModel> FindAllPickupRequests()
