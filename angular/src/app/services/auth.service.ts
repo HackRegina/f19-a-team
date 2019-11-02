@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.httpClient.post<any>(`${environment.baseUrl}/Users/auth`, { username, password })
+    return this.httpClient.post<any>(`${environment.baseUrl}/Users/auth?userName=${username}&password=${password}`, { username, password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));

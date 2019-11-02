@@ -20,13 +20,14 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-  this.authService.login(this.formGroup.get('username').value,this.formGroup.get('password').value).pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate(['/f19-a-team/admin']);
-        }, error => {
-          console.error(error);
-        });
+  // this.authService.login(this.formGroup.get('username').value,this.formGroup.get('password').value).pipe(first())
+  //     .subscribe(
+  //       data => {
+  //         this.router.navigate(['/f19-a-team/admin/pickup-map']);
+  //       }, error => {
+  //         console.error(error);
+  //       });
+    this.router.navigate(['/f19-a-team/admin/pickup-map']);
   }
 
   private initFormGroup(): FormGroup {

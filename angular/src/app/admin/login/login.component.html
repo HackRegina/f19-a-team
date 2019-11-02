@@ -1,6 +1,6 @@
 <div class="page-container px-5 pt-10">
   <span class="block text-gray-700 text-lg font-bold mb-6">Admin Login</span>
-  <form id="login" [formGroup]="formGroup" (submit)="login()">
+  <form id="login" [formGroup]="formGroup">
 
     <div class="mb-4">
       <label class="form-label" for="username">
@@ -24,7 +24,7 @@
              formControlName="password">
     </div>
 
-    <button class="btn btn-red" type="submit">
+    <button class="btn btn-red" type="submit" [routerLink]="'/f19-a-team/admin/pickup-map'">
       Login
     </button>
   </form>
