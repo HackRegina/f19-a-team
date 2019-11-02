@@ -67,7 +67,8 @@ namespace NeedleBuddy.API
                 builder =>
                 {
                     builder.WithOrigins("http://localhost:4200/",
-                                        "https://localhost:4200/");
+                                        "https://localhost:4200/",
+                                        "https://hackreginahackathon2019.firebaseapp.com");
                 });
             });
         }
