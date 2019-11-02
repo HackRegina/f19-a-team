@@ -1,19 +1,34 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {PickupRequest} from "../data/pickup-request";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PickupRequestService {
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin':'*'
+    })
+  };
+
   constructor(private httpClient: HttpClient) { }
 
   public requestNeedlePickup(pickupRequest: PickupRequest): void {
+    this.httpClient.post(`${environment.baseUrl}/PickUpRequests`, pickupRequest, this.httpOptions).subscribe(
+      response => console.log(response),
+      err => console.log(err)
+    );
     console.log("Requesting pickup: ", pickupRequest);
   }
 
   public getPickupRequests(): Array<PickupRequest> {
+    this.httpClient.get(`${environment.baseUrl}/PickUpRequests/list`).subscribe(
+      response => console.log("response from get: ", response),
+      err => console.log(err)
+    );
     // mock data for now
     return [
       {
