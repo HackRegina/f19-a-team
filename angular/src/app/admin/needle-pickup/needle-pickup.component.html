@@ -1,6 +1,6 @@
 <div class="page-container px-5">
   <span class="block text-gray-700 text-lg font-bold mb-6">Needle Pickup</span>
-  <form id="pickup-request">
+  <form id="pickup-request" (submit)="submitPickup()" [formGroup]="formGroup">
 
     <div class="mb-4">
       <label class="form-label">
@@ -22,7 +22,8 @@
       <input class="txt-input focus:outline-none focus:shadow-outline"
              id="count"
              type="number"
-             placeholder="Number">
+             placeholder="Number"
+             formControlName="count">
     </div>
 
     <button class="btn btn-red" type="submit">
