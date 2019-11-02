@@ -7,7 +7,7 @@ import {MapComponent} from './common/map/map.component';
 import {HeaderComponent} from './common/header/header.component';
 import {RequestMapComponent} from './user/request-map/request-map.component';
 import {PickupRequestComponent} from './user/pickup-request/pickup-request.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AdminMapComponent } from './admin/admin-map/admin-map.component';
 import { NeedlePickupComponent } from './admin/needle-pickup/needle-pickup.component';
@@ -24,6 +24,7 @@ import { NeedlePickupComponent } from './admin/needle-pickup/needle-pickup.compo
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule
