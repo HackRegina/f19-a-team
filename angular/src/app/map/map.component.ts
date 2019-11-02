@@ -3,8 +3,8 @@ import {Feature, Geolocation, Map, View} from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import OSM from 'ol/source/OSM';
 import {transform, transformExtent} from 'ol/proj';
-import VectorSource from 'ol/source/vector';
-import Vector from 'ol/layer/vector';
+import VectorSource from 'ol/source/Vector';
+import OlVector from 'ol/layer/Vector';
 import {Point} from 'ol/geom';
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
 
@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
 
   private view: View;
   private geolocation: Geolocation;
-  private currentPositionLayer: Vector;
+  private currentPositionLayer: OlVector;
 
   constructor() { }
 
@@ -44,6 +44,24 @@ export class MapComponent implements OnInit {
       view: this.view
     });
 
+    const positionMarker = new Feature({
+      geometry: new Point(transform([-104.6189, 50.4452], 'EPSG:4326', 'EPSG:3857')),
+      style: new Style({
+        image: new CircleStyle({
+          radius: 6,
+          fill: new Fill({color: '#3399CC'}),
+          stroke: new Stroke({ color: '#fff', width: 2 })
+        })
+      })
+    });
+
+    this.currentPositionLayer = new OlVector({
+      map: this.map,
+      source: new VectorSource({
+        features: [positionMarker]
+      })
+    });
+
     this.initGeolocation();
   }
 
@@ -56,7 +74,7 @@ export class MapComponent implements OnInit {
     });
 
     this.geolocation.setTracking(true);
-    this.geolocation.on('change:position', this.addCurrentLocationMarker());
+    this.geolocation.on('change', this.addCurrentLocationMarker());
   }
 
   private addCurrentLocationMarker(): void {
@@ -64,9 +82,9 @@ export class MapComponent implements OnInit {
     if(!this.geolocation || !this.geolocation.getPosition()) {
       return;
     }
-    
+
     const positionMarker = new Feature({
-      geometry: new Point(this.geolocation.getPosition()),
+      geometry: new Point(transform(this.geolocation.getPosition(), 'EPSG:4326', 'EPSG:3857')),
       style: new Style({
         image: new CircleStyle({
           radius: 6,
@@ -76,12 +94,7 @@ export class MapComponent implements OnInit {
       })
     });
 
-    this.currentPositionLayer = new Vector({
-      map: this.map,
-      source: new VectorSource({
-        features: [positionMarker]
-      })
-    });
+    this.currentPositionLayer.source.addFeature(positionMarker);
   }
 
 }
