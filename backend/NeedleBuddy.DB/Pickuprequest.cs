@@ -8,9 +8,6 @@ namespace NeedleBuddy.DB
     [Table("pickuprequest")]
     public partial class Pickuprequest
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
         [Column("phone_number")]
         [StringLength(24)]
         public string PhoneNumber { get; set; }
@@ -28,5 +25,8 @@ namespace NeedleBuddy.DB
         public double? LocationLong { get; set; }
         [Column("last_modified", TypeName = "date")]
         public DateTime? LastModified { get; set; }
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
     }
 }

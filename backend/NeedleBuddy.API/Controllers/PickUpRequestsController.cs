@@ -23,7 +23,7 @@ namespace NeedleBuddy.API.Controllers
         }
 
         [HttpPost()]
-        public PickupRequestViewModel CreatePickupRequest(string Phone_Number, string Description, float Location_Lat, float Location_Long)
+        public ActionResult<PickupRequestViewModel> CreatePickupRequest(string Phone_Number, string Description, float Location_Lat, float Location_Long)
         {
             var prvm = new PickupRequestViewModel()
             {
@@ -39,7 +39,7 @@ namespace NeedleBuddy.API.Controllers
 
             var databaseResponse = _repository.CreatePickupRequest(pickupRequest);
 
-            return _mapper.Map<PickupRequestViewModel>(databaseResponse);
+            return Ok(_mapper.Map<PickupRequestViewModel>(databaseResponse));
         }
 
         [HttpGet("nearby")]

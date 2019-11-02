@@ -22,6 +22,7 @@ namespace NeedleBuddy.DB
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,11 +44,6 @@ namespace NeedleBuddy.DB
             modelBuilder.Entity<Dropofflocation>(entity =>
             {
                 entity.HasNoKey();
-            });
-
-            modelBuilder.Entity<Pickuprequest>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -12,8 +12,14 @@ namespace NeedleBuddy.API
     {
         public AutoMapperProfile()
         {
-            CreateMap<Pickuprequest, PickupRequestViewModel>();
-            CreateMap<PickupRequestViewModel, Pickuprequest>();
+            CreateMap<Pickuprequest, PickupRequestViewModel>()
+                .ForMember(x => x.Location_Lat, opt => opt.MapFrom(y => y.LocationLat))
+                .ForMember(x => x.Location_Long, opt => opt.MapFrom(y => y.LocationLong))
+                .ForMember(x => x.Phone_Number, opt => opt.MapFrom(y => y.PhoneNumber));
+            CreateMap<PickupRequestViewModel, Pickuprequest>()
+                .ForMember(x => x.LocationLat, opt => opt.MapFrom(y => y.Location_Lat))
+                .ForMember(x => x.LocationLong, opt => opt.MapFrom(y => y.Location_Long))
+                .ForMember(x => x.PhoneNumber, opt => opt.MapFrom(y => y.Phone_Number));
 
             CreateMap<Dropofflocation, DropOffLocationViewModel>();
             CreateMap<DropOffLocationViewModel, Dropofflocation>();

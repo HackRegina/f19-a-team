@@ -24,10 +24,17 @@ namespace NeedleBuddy.DB
 
         public Pickuprequest CreatePickupRequest(Pickuprequest prm)
         {
-            Pickuprequest dbResponse = new Pickuprequest();
+            Pickuprequest dbResponse = new Pickuprequest()
+            {
+                PhoneNumber = prm.PhoneNumber,
+                Description = prm.Description,
+                LocationLat = prm.LocationLat,
+                LocationLong = prm.LocationLong,
+                Status = prm.Status,
+                LastModified = DateTime.UtcNow
+            };
 
-
-            _context.Add(prm);
+            _context.Add(dbResponse);
             _context.SaveChanges();
             dbResponse = _context.Pickuprequest.Find(prm.Id);
 
