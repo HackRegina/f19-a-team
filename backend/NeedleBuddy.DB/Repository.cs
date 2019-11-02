@@ -36,7 +36,6 @@ namespace NeedleBuddy.DB
 
             _context.Add(dbResponse);
             _context.SaveChanges();
-            dbResponse = _context.Pickuprequest.Find(prm.Id);
 
             return dbResponse;
         }
