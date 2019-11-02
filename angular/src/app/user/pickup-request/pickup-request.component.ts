@@ -26,8 +26,8 @@ export class PickupRequestComponent implements OnInit, OnDestroy {
     this.mapService.currentLocation$.subscribe((location: MapLocation) => {
       console.log("current location: ", location);
       this.requestFormGroup.patchValue({
-        latitude: location ? location.latitude : null,
-        longitude: location ? location.longitude : null
+        location_Lat: location ? location.latitude : null,
+        location_Long: location ? location.longitude : null
       })
     });
   }
@@ -44,10 +44,10 @@ export class PickupRequestComponent implements OnInit, OnDestroy {
   private initFormGroup(): FormGroup {
     return this.fb.group({
       description: null,
-      phoneNumber: null,
+      phone_Number: null,
       count: 0,
-      latitude: null,
-      longitude: null,
+      location_Lat: null,
+      location_Long: null,
       address: null
     });
   }
