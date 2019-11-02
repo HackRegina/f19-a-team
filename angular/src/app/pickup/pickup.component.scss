@@ -1,5 +1,5 @@
 #pickup-map-container {
-  height: 100%;
+  height: calc(100vh - 80px);
   box-sizing: border-box;
   max-width: 100%;
   position: relative;
@@ -7,7 +7,7 @@
 
 .button-container {
   position: absolute;
-  bottom: 80px;
+  bottom: 50px;
   width: 100%;
   display: flex;
   justify-content: center;

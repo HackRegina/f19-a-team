@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
+html, body, app-root {
   height: 100vh !important;
   max-height: 100vh;
   box-sizing: border-box;

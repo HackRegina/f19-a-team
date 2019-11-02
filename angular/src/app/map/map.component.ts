@@ -22,6 +22,8 @@ export class MapComponent implements OnInit {
   private currentLocationMarker: Feature;
   private currentPositionLayer: OlVector;
 
+  private geoLocationFirstFound: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -90,11 +92,15 @@ export class MapComponent implements OnInit {
       const coordinates = transform(this.geolocation.getPosition(), 'EPSG:4326', 'EPSG:3857');
       console.log('coordinates > ', coordinates);
       this.currentLocationMarker.setGeometry(coordinates ? new Point(coordinates) : null);
-      this.map.getView().animate({
-        center: coordinates,
-        duration: 2000,
-        zoom:12
-      });
+      if(!this.geoLocationFirstFound) {
+        this.map.getView().animate({
+          center: coordinates,
+          duration: 2000,
+          zoom:12
+        });
+        this.geoLocationFirstFound = true;
+      }
+
     });
   }
 
