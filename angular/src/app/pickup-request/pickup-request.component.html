@@ -1,6 +1,11 @@
 <div id="pickup-request-container" class="px-2">
-  <span class="block text-gray-700 text-lg font-bold mb-2">Needle Pickup Request</span>
+  <span class="block text-gray-700 text-lg font-bold mb-6">Needle Pickup Request</span>
   <form id="pickup-request">
+    <div class="mb-4">
+      <span class="block text-gray-700 text-sm font-bold mb-2">
+        Location:
+      </span>
+    </div>
     <div class="mb-4">
       <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
         Description
@@ -13,7 +18,7 @@
         Phone Number
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
-      leading-tight focus:outline-none focus:shadow-outline" id="phone-number" type="text" placeholder="Phone Number">
+      leading-tight focus:outline-none focus:shadow-outline" id="phone-number" type="tel" placeholder="Phone Number">
     </div>
     <button class="btn btn-red">
       Submit Request
