@@ -1,7 +1,9 @@
 html, body {
   height: 100% !important;
+  max-height: 100%;
+  box-sizing: border-box;
 }
 
 .ol-zoom button {
-  background-color: rgba(247, 44, 37, 0.6) !important;
+  background-color: rgba(197, 48, 48, 0.7) !important;
 }
