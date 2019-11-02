@@ -22,11 +22,17 @@ namespace NeedleBuddy.API.Controllers
             _users = users;
         }
 
+        [AllowAnonymous]
         [HttpPost("auth")]
         public UserViewModel AuthenticateUser(UserViewModel uvm)
         {
-             _users.Authenticate(uvm.UserName, uvm.Password);
-            return null;
+             return _users.Authenticate(uvm.UserName, uvm.Password);
+        }
+
+        [HttpGet("get/{id}")]
+        public UserViewModel GetUserByOwnId(int id)
+        {
+            return _users.GetMyCredentials(id);
         }
     }
 }
