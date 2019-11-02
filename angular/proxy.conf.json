@@ -1,0 +1,10 @@
+{
+  "/posts": {
+    "target": "https://needlebuddy.azurewebsites.net",
+    "secure": true,
+    "pathRewrite": {
+      "^/posts": ""
+    },
+    "changeOrigin": true
+  }
+}
