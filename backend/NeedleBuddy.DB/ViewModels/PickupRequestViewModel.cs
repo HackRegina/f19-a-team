@@ -11,7 +11,7 @@ namespace NeedleBuddy.DB.ViewModels
         public string Phone_Number { get; set; }
         public string Description { get; set; }
         public int Count { get; set; }
-        public Enums.PickupStatus Status { get; set; }
+        public string Status { get; set; }
         public float Location_Lat { get; set; }
         public float Location_Long { get; set; }
 

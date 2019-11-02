@@ -29,7 +29,7 @@ namespace NeedleBuddy.API.Controllers
             {
                 Phone_Number = Phone_Number,
                 Description = Description,
-                Status = Enums.PickupStatus.Pending,
+                Status = PickupStatus.Pending,
                 Count = 0,
                 Location_Lat = Location_Lat,
                 Location_Long = Location_Long,
