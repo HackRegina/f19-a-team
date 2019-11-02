@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NeedleBuddy.API.AuthService;
 
 namespace NeedleBuddy.API.Controllers
 {
@@ -13,5 +14,13 @@ namespace NeedleBuddy.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private IUserService _users;
+
+        public UsersController(IUserService users)
+        {
+            _users = users;
+        }
+
+
     }
 }
