@@ -29,7 +29,7 @@ namespace NeedleBuddy.API
         {
             services.AddControllers();
             // TODO - Pass this in from a secret file
-            services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(null));
+            services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(Configuration.GetConnectionString("NeedleBuddyDatabase")));
 
             services.AddSwaggerGen(c =>
             {
