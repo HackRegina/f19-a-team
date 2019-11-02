@@ -14,7 +14,7 @@ const routes: Routes = [
           { path: 'login', component: LoginComponent },
           { path: 'pickup-map', component: AdminMapComponent },
           { path: 'needle-pickup', component: NeedlePickupComponent },
-          { path: '', redirectTo: '/f19-a-team/admin/pickup-map', pathMatch: 'full' }
+          { path: '', redirectTo: '/f19-a-team/admin/login', pathMatch: 'full' }
         ]},
       { path: '', redirectTo: '/f19-a-team/map', pathMatch: 'full' }
     ]},
