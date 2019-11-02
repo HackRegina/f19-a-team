@@ -16,6 +16,7 @@ namespace NeedleBuddy.DB
         }
 
         public virtual DbSet<Adminusers> Adminusers { get; set; }
+        public virtual DbSet<Clientsecret> Clientsecret { get; set; }
         public virtual DbSet<Dropofflocation> Dropofflocation { get; set; }
         public virtual DbSet<Pickuprequest> Pickuprequest { get; set; }
 
@@ -32,6 +33,11 @@ namespace NeedleBuddy.DB
                 entity.Property(e => e.Id)
                     .ValueGeneratedOnAdd()
                     .UseIdentityAlwaysColumn();
+            });
+
+            modelBuilder.Entity<Clientsecret>(entity =>
+            {
+                entity.HasNoKey();
             });
 
             modelBuilder.Entity<Dropofflocation>(entity =>

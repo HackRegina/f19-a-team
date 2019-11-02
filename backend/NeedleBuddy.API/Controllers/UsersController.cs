@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeedleBuddy.API.AuthService;
+using NeedleBuddy.DB.ViewModels;
 
 namespace NeedleBuddy.API.Controllers
 {
@@ -21,6 +22,11 @@ namespace NeedleBuddy.API.Controllers
             _users = users;
         }
 
-
+        [HttpPost("auth")]
+        public UserViewModel AuthenticateUser(UserViewModel uvm)
+        {
+             _users.Authenticate(uvm.UserName, uvm.Password);
+            return null;
+        }
     }
 }

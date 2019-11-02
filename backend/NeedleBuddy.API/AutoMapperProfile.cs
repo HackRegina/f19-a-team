@@ -17,6 +17,10 @@ namespace NeedleBuddy.API
 
             CreateMap<Dropofflocation, DropOffLocationViewModel>();
             CreateMap<DropOffLocationViewModel, Dropofflocation>();
+
+            CreateMap<Adminusers, UserViewModel>()
+                .ForMember(x => x.Password, opt => opt.Ignore());
+            CreateMap<UserViewModel, Adminusers>();
         }
     }
 }

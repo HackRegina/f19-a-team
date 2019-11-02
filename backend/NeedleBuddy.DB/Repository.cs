@@ -81,5 +81,10 @@ namespace NeedleBuddy.DB
         {
             return _context.Adminusers.Where(au => au.Id == id).FirstOrDefault();
         }
+
+        public Clientsecret GetClientsecret()
+        {
+            return _context.Clientsecret.Where(cs => cs.Id == 0).FirstOrDefault();
+        }
     }
 }

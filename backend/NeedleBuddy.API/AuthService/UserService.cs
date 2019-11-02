@@ -14,9 +14,18 @@ namespace NeedleBuddy.API.AuthService
             _repository = repository;
         }
 
-        public User Authenticate(string UserName, string Password)
+        public User Authenticate(string username, string password)
         {
-            throw new NotImplementedException();
+            var user = _repository.GetAdminUserByUsernameAndHashedPassword(username, password);
+
+            if (user == null)
+            {
+                return null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public User GetMyCredentials(int Id)
