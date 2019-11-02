@@ -10,8 +10,8 @@ import {environment} from "../../environments/environment";
 })
 export class AuthService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+  public currentUser: Observable<User> = this.currentUserSubject.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.httpClient.post<any>(`${environment.baseUrl}/users/auth`, { username, password })
+    return this.httpClient.post<any>(`${environment.baseUrl}/Users/auth`, { username, password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));
