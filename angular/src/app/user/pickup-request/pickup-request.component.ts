@@ -37,13 +37,18 @@ export class PickupRequestComponent implements OnInit, OnDestroy {
     this.pickupRequestService.requestNeedlePickup(this.requestFormGroup.getRawValue() as PickupRequest);
   }
 
+  public hasCurrentLocation(): boolean {
+    return this.requestFormGroup.get('latitude').value && this.requestFormGroup.get('longitude').value;
+  }
+
   private initFormGroup(): FormGroup {
     return this.fb.group({
       description: null,
       phoneNumber: null,
       count: 0,
       latitude: null,
-      longitude: null
+      longitude: null,
+      address: null
     });
   }
 

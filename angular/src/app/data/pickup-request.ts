@@ -5,4 +5,5 @@ export class PickupRequest {
   phoneNumber: number;
   latitude: number;
   longitude: number;
+  address?: string;
 }
