@@ -85,7 +85,7 @@ export class MapComponent implements OnInit {
         : null;
       this.mapService.setCurrentLocation(mapLocation);
       const coordinates = transform(this.geolocation.getPosition(), 'EPSG:4326', 'EPSG:3857');
-      console.log('coordinates > ', coordinates);
+
       this.currentLocationMarker.setGeometry(coordinates ? new Point(coordinates) : null);
       if(!this.geoLocationFirstFound) {
         this.map.getView().animate({
@@ -97,27 +97,6 @@ export class MapComponent implements OnInit {
       }
 
     });
-  }
-
-  private addCurrentLocationMarker(): void {
-    console.log(this.geolocation);
-    if(!this.geolocation || !this.geolocation.getPosition()) {
-      console.log("returning early", this.geolocation.getPostion());
-      return;
-    }
-
-    const positionMarker = new Feature({
-      geometry: new Point(transform(this.geolocation.getPosition(), 'EPSG:4326', 'EPSG:3857')),
-      style: new Style({
-        image: new CircleStyle({
-          radius: 6,
-          fill: new Fill({color: '#3399CC'}),
-          stroke: new Stroke({ color: '#fff', width: 2 })
-        })
-      })
-    });
-
-    this.currentPositionLayer.source.addFeature(positionMarker);
   }
 
 }

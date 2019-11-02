@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MapService} from "../../services/map/map.service";
+import OlVector from 'ol/layer/Vector';
 
 @Component({
   selector: 'app-admin-map',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminMapComponent implements OnInit {
 
-  constructor() { }
+  private pickupRequestLayer: OlVector;
+
+  constructor(private mapService: MapService) { }
 
   ngOnInit() {
+    this.initPickupRequestLayer();
+  }
+
+  public initPickupRequestLayer() {
+    this.pickupRequestLayer = null;
   }
 
 }

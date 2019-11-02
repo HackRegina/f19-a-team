@@ -5,20 +5,22 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MapComponent} from './common/map/map.component';
 import {HeaderComponent} from './common/header/header.component';
-import {PickupComponent} from './user/pickup/pickup.component';
+import {RequestMapComponent} from './user/request-map/request-map.component';
 import {PickupRequestComponent} from './user/pickup-request/pickup-request.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AdminMapComponent } from './admin/admin-map/admin-map.component';
+import { NeedlePickupComponent } from './admin/needle-pickup/needle-pickup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     HeaderComponent,
-    PickupComponent,
+    RequestMapComponent,
     PickupRequestComponent,
-    AdminMapComponent
+    AdminMapComponent,
+    NeedlePickupComponent
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pickup',
-  templateUrl: './pickup.component.html',
-  styleUrls: ['./pickup.component.scss']
+  templateUrl: './request-map.component.html',
+  styleUrls: ['./request-map.component.scss']
 })
-export class PickupComponent implements OnInit {
+export class RequestMapComponent implements OnInit {
 
   constructor(private router: Router) { }
 
