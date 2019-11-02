@@ -49,10 +49,10 @@ namespace NeedleBuddy.API.Controllers
         }
 
         [HttpGet("nearby")]
-        public List<PickupRequestViewModel> SortedPickupRequests()
+        public List<PickupRequestViewModel> SortedPickupRequests(double Location_Lat, double Location_Long)
         {
             List<Pickuprequest> allRequests = _repository.FindAllPickupRequests();
-            allRequests = allRequests.OrderBy(o => o.LastModified).ToList();
+            allRequests = allRequests.OrderBy(o => HaversineHelper.HaversineDistance(Location_Lat, Location_Long, o.LocationLat, o.LocationLong)).ToList();
             return _mapper.Map<List<PickupRequestViewModel>>(allRequests);
         }
 
