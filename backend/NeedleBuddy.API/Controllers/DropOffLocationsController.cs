@@ -25,9 +25,17 @@ namespace NeedleBuddy.API.Controllers
         [HttpGet()]
         public List<DropOffLocationViewModel> FindAllDropOffLocations()
         {
-            List<DropOffLocationViewModel> dropLocsView
+            List<DropOffLocationViewModel> dropLocsView = new List<DropOffLocationViewModel>();
+            //DropOffLocationViewModel temp = new DropOffLocationViewModel();
             List<Dropofflocation> dropLocs = _repository.FindAllDropoffLocations();
-            _mapper.Map<List<PickupRequestViewModel>>(dropLocs)
+            dropLocsView = _mapper.Map<List<DropOffLocationViewModel>>(dropLocs);
+            //foreach(Dropofflocation dropLoc in dropLocs)
+            //{
+            //    temp = _mapper.Map<DropOffLocationViewModel>(dropLocs);
+            //    dropLocs.Add(temp);
+            //}
+
+            return dropLocsView;
         }
     }
 }

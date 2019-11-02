@@ -14,11 +14,11 @@ namespace NeedleBuddy.API.Controllers
     [ApiController]
     public class PickUpRequestsController : ControllerBase
     {
-        private IRepository _respository;
+        private IRepository _repository;
         private IMapper _mapper;
         public PickUpRequestsController(IRepository repository, IMapper mapper)
         {
-            _respository = repository;
+            _repository = repository;
             _mapper = mapper;
         }
 
@@ -37,7 +37,7 @@ namespace NeedleBuddy.API.Controllers
 
             var pickupRequest = _mapper.Map<Pickuprequest>(prvm);
 
-            var databaseResponse = _respository.CreatePickupRequest(pickupRequest);
+            var databaseResponse = _repository.CreatePickupRequest(pickupRequest);
 
             return _mapper.Map<PickupRequestViewModel>(databaseResponse);
         }
@@ -45,19 +45,23 @@ namespace NeedleBuddy.API.Controllers
         [HttpGet("nearby")]
         public List<PickupRequestViewModel> SortedPickupRequests()
         {
-            throw new NotImplementedException();
+            List<Pickuprequest> allRequests = _repository.FindAllPickupRequests();
+            allRequests = allRequests.OrderBy(o => o.LastModified).ToList();
+            return _mapper.Map<List<PickupRequestViewModel>>(allRequests);
         }
 
         [HttpGet("list")]
         public List<PickupRequestViewModel> ListAllPickupRequests()
         {
-            throw new NotImplementedException();
+            List<Pickuprequest> allRequests = _repository.FindAllPickupRequests();
+            return _mapper.Map<List<PickupRequestViewModel>>(allRequests);
         }
 
         [HttpPut("update")]
-        public PickupRequestViewModel UpdatePickupRequest()
+        public PickupRequestViewModel UpdatePickupRequest(int id, int count, string status)
         {
-            throw new NotImplementedException();
+            Pickuprequest item =_repository.UpdatePickupRequest(id, count, status);
+            return _mapper.Map<PickupRequestViewModel>(item);
         }
     }
 }
