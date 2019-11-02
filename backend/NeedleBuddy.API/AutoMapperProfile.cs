@@ -14,6 +14,9 @@ namespace NeedleBuddy.API
         {
             CreateMap<Pickuprequest, PickupRequestViewModel>();
             CreateMap<PickupRequestViewModel, Pickuprequest>();
+
+            CreateMap<Dropofflocation, DropOffLocationViewModel>();
+            CreateMap<DropOffLocationViewModel, Dropofflocation>();
         }
     }
 }
