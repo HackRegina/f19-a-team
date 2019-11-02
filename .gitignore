@@ -12,6 +12,7 @@ tools/gulp-tasks/cldr/cldr-data/
 pubspec.lock
 .c9
 .idea/
+*.iml
 .devcontainer/*
 !.devcontainer/recommended-devcontainer.json
 !.devcontainer/recommended-Dockerfile
