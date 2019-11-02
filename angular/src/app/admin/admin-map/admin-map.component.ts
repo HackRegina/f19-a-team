@@ -9,6 +9,7 @@ import {transform, transformExtent} from 'ol/proj';
 import VectorSource from 'ol/source/Vector';
 import {Point} from 'ol/geom';
 import {Circle, Fill, Stroke, Style} from 'ol/style';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-map',
@@ -18,13 +19,21 @@ import {Circle, Fill, Stroke, Style} from 'ol/style';
 export class AdminMapComponent implements OnInit {
 
   private pickupRequestLayer: OlVector;
+  private map: Map;
 
   constructor(private mapService: MapService,
-              private pickupRequestService: PickupRequestService) { }
+              private pickupRequestService: PickupRequestService,
+              private router: Router) { }
 
   ngOnInit() {
     this.mapService.map$.subscribe((map: Map) => {
       if(map) {
+        this.map = map;
+        this.map.on("click", event => {
+          map.forEachFeatureAtPixel(event.pixel, (feature, layer) => {
+            this.router.navigate(['/admin/needle-pickup']);
+          })
+        });
         this.initPickupRequestLayer(map);
       }
     });
