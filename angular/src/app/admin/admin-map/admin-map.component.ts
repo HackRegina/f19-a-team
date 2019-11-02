@@ -49,6 +49,14 @@ export class AdminMapComponent implements OnInit {
       source: new VectorSource({features: requestPoints})
     });
     map.addLayer(this.pickupRequestLayer);
+    map.on("moveend", event => {
+      this.pickupRequestLayer.getSource().getFeatures().forEach((feature) => {
+        const radius = this.valueRange(18 - map.getView().getResolution(), 5, 15);
+        feature.getStyle().getImage().setRadius(radius)
+      });
+
+      this.pickupRequestLayer.getSource().changed();
+    });
   }
 
   private createNewMapPoint(latitude: number, longitude: number): Feature {
@@ -66,6 +74,15 @@ export class AdminMapComponent implements OnInit {
     );
 
     return mapPoint;
+  }
+
+  private valueRange(value: number, min: number, max: number) {
+    if(value < min) {
+      return min;
+    } else if (value > max) {
+      return max;
+    }
+    return value;
   }
 
 }
