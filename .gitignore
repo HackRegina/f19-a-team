@@ -12,6 +12,7 @@ tools/gulp-tasks/cldr/cldr-data/
 pubspec.lock
 .c9
 .idea/
+*.iml
 .devcontainer/*
 !.devcontainer/recommended-devcontainer.json
 !.devcontainer/recommended-Dockerfile
@@ -42,3 +43,12 @@ yarn-error.log
 
 .notes.md
 baseline.json
+/backend/NeedleBuddy.API/obj
+/backend/NeedleBuddy.DB/obj
+/.vs
+/backend/.vs/NeedleBuddy/v16
+/backend/NeedleBuddy.API/Properties
+/backend/NeedleBuddy.API/bin/Debug/netcoreapp3.0
+/backend/NeedleBuddy.DB/bin/Debug/netcoreapp3.0
+/backend/NeedleBuddy.API/NeedleBuddy.API.csproj.user
+/backend/.vs/NeedleBuddy/config
