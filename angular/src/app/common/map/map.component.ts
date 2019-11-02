@@ -67,6 +67,8 @@ export class MapComponent implements OnInit {
         features: [this.currentLocationMarker]
       })
     });
+
+    this.mapService.setMap(this.map);
   }
 
   private initGeolocation() {

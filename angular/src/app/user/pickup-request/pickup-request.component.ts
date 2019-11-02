@@ -23,7 +23,7 @@ export class PickupRequestComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.requestFormGroup = this.initFormGroup();
-    this.mapService.currentLocation.subscribe((location: MapLocation) => {
+    this.mapService.currentLocation$.subscribe((location: MapLocation) => {
       console.log("current location: ", location);
       this.requestFormGroup.patchValue({
         latitude: location ? location.latitude : null,
