@@ -23,7 +23,6 @@ SET row_security = off;
 -- Name: public; Type: SCHEMA; Schema: -; Owner: ztcyedrwldzsao
 --
 
-CREATE SCHEMA public;
 
 --
 -- TOC entry 3852 (class 0 OID 0)
