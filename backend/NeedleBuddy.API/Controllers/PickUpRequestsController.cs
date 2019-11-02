@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeedleBuddy.DB;
@@ -14,9 +15,11 @@ namespace NeedleBuddy.API.Controllers
     public class PickUpRequestsController : ControllerBase
     {
         private IRepository _respository;
-        public PickUpRequestsController(IRepository repository)
+        private IMapper _mapper;
+        public PickUpRequestsController(IRepository repository, IMapper mapper)
         {
             _respository = repository;
+            _mapper = mapper;
         }
 
         [HttpPost()]
@@ -32,7 +35,11 @@ namespace NeedleBuddy.API.Controllers
                 Location_Long = Location_Long,
             };
 
-            return _respository.CreatePickupRequest(prvm);
+            var pickupRequest = _mapper.Map<Pickuprequest>(prvm);
+
+            var databaseResponse = _respository.CreatePickupRequest(pickupRequest);
+
+            return _mapper.Map<PickupRequestViewModel>(databaseResponse);
         }
 
         [HttpGet("nearby")]

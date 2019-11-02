@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,9 +28,10 @@ namespace NeedleBuddy.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
-            // TODO
-            //services.AddScoped<IRepository, Repository>(/*Build a repository here*/);
+            // TODO - Pass this in from a secret file
+            services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(Configuration.GetConnectionString("NeedleBuddyDatabase")));
 
             services.AddSwaggerGen(c =>
             {
