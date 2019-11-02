@@ -16,5 +16,6 @@ namespace NeedleBuddy.DB
         public Adminusers GetAdminUserById(int id);
         public Adminusers GetAdminUserByUsername(string username);
         public Clientsecret GetClientsecret();
+        public Clientsecret GetSMSsecret();
     }
 }

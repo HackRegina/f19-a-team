@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NeedleBuddy.API.MessageService;
 using NeedleBuddy.DB;
 using NeedleBuddy.DB.ViewModels;
 
@@ -18,10 +19,12 @@ namespace NeedleBuddy.API.Controllers
     {
         private IRepository _repository;
         private IMapper _mapper;
-        public PickUpRequestsController(IRepository repository, IMapper mapper)
+        private ISMSService _textMessages;
+        public PickUpRequestsController(IRepository repository, IMapper mapper, ISMSService textMessages)
         {
             _repository = repository;
             _mapper = mapper;
+            _textMessages = textMessages;
         }
 
         [HttpPost()]
@@ -64,6 +67,12 @@ namespace NeedleBuddy.API.Controllers
         public PickupRequestViewModel UpdatePickupRequest(int id, int count, string status)
         {
             Pickuprequest item =_repository.UpdatePickupRequest(id, count, status);
+
+            if(status == PickupStatus.Found)
+            {
+                _textMessages.SendSMSMessage(item.PhoneNumber);
+            }
+
             return _mapper.Map<PickupRequestViewModel>(item);
         }
     }

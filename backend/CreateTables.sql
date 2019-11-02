@@ -140,7 +140,7 @@ INSERT INTO public.adminusers OVERRIDING SYSTEM VALUE VALUES (1, 'apss', '2c26b4
 --
 
 INSERT INTO public.clientsecret VALUES (0, 'TheMostSecureClientSecretInTheWorld');
-
+INSERT INTO public.clientsecret VALUES (1, '4QJ8LW066P36qjx783PTR1ofJnSph3Vv');
 
 --
 -- TOC entry 3856 (class 0 OID 0)
