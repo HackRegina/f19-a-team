@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { HeaderComponent } from './header/header.component';
 import { PickupComponent } from './pickup/pickup.component';
+import { PickupRequestComponent } from './pickup-request/pickup-request.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     HeaderComponent,
-    PickupComponent
+    PickupComponent,
+    PickupRequestComponent
   ],
   imports: [
     BrowserModule,
