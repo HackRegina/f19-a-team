@@ -51,7 +51,7 @@ namespace NeedleBuddy.DB
         public List<Pickuprequest> FindAllPickupRequests()
         {
             List<Pickuprequest> allPickUps = new List<Pickuprequest>();
-            allPickUps = _context.Pickuprequest.ToListAsync().Result;
+            allPickUps = _context.Pickuprequest.Where(pk => pk.Status == PickupStatus.Pending).ToList();
             return allPickUps;
         }
 
