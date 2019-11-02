@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {PickupRequestService} from "../../services/pickup-request/pickup-request.service";
+import {PickupRequestService} from "../../services/pickup-request.service";
 import {PickupRequest} from "../../data/pickup-request";
 import {MapLocation} from "../../data/map-location";
 import {Subscription} from "rxjs";
-import {MapService} from "../../services/map/map.service";
+import {MapService} from "../../services/map.service";
 
 @Component({
   selector: 'app-pickup-request',

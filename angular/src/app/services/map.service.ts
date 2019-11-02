@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {MapLocation} from "../../data/map-location";
+import {MapLocation} from "../data/map-location";
 import {Map} from 'ol';
 
 @Injectable({

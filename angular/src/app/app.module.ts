@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { AdminMapComponent } from './admin/admin-map/admin-map.component';
 import { NeedlePickupComponent } from './admin/needle-pickup/needle-pickup.component';
+import { LoginComponent } from './admin/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NeedlePickupComponent } from './admin/needle-pickup/needle-pickup.compo
     RequestMapComponent,
     PickupRequestComponent,
     AdminMapComponent,
-    NeedlePickupComponent
+    NeedlePickupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MapService} from "../../services/map/map.service";
+import {MapService} from "../../services/map.service";
 import OlVector from 'ol/layer/Vector';
 import {PickupRequest} from "../../data/pickup-request";
-import {PickupRequestService} from "../../services/pickup-request/pickup-request.service";
+import {PickupRequestService} from "../../services/pickup-request.service";
 import {Feature, Geolocation, Map, View} from 'ol';
 import OSM from 'ol/source/OSM';
 import {transform, transformExtent} from 'ol/proj';
