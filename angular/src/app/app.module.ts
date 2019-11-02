@@ -9,6 +9,7 @@ import {PickupComponent} from './user/pickup/pickup.component';
 import {PickupRequestComponent} from './user/pickup-request/pickup-request.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { AdminMapComponent } from './admin/admin-map/admin-map.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {HttpClientModule} from "@angular/common/http";
     MapComponent,
     HeaderComponent,
     PickupComponent,
-    PickupRequestComponent
+    PickupRequestComponent,
+    AdminMapComponent
   ],
   imports: [
     BrowserModule,
