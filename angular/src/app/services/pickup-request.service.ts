@@ -17,7 +17,7 @@ export class PickupRequestService {
   constructor(private httpClient: HttpClient) { }
 
   public requestNeedlePickup(pickupRequest: PickupRequest): void {
-    this.httpClient.post(`${environment.baseUrl}/PickUpRequests`, pickupRequest, this.httpOptions).subscribe(
+    this.httpClient.post(`${environment.baseUrl}/PickUpRequests?Phone_Number=${pickupRequest.phone_Number}&Description=${pickupRequest.description}&Location_Lat=${pickupRequest.location_Lat}&Location_Long=${pickupRequest.location_Long}`, pickupRequest, this.httpOptions).subscribe(
       response => console.log(response),
       err => console.log(err)
     );
