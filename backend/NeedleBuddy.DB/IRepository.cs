@@ -12,5 +12,7 @@ namespace NeedleBuddy.DB
         public List<Dropofflocation> FindAllDropoffLocations();
         public Pickuprequest UpdatePickupRequest(int id, int count, string status);
         public List<Pickuprequest> FindPickupRequestsInDateRange(DateTime start, DateTime end);
+        public Adminusers GetAdminUserByUsernameAndHashedPassword(string username, string password);
+        public Adminusers GetAdminUserById(int id);
     }
 }

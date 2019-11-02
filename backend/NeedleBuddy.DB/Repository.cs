@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NeedleBuddy.DB.ViewModels;
-using Microsoft.EntityFrameworkCore;
 using NeedleBuddy.DB;
 using System.Linq;
 
@@ -71,6 +70,16 @@ namespace NeedleBuddy.DB
                 _context.SaveChanges();
             }
             return item;
+        }
+
+        public Adminusers GetAdminUserByUsernameAndHashedPassword(string username, string password)
+        {
+            return _context.Adminusers.Where(au => au.Username == username && au.Password == password).FirstOrDefault();
+        }
+
+        public Adminusers GetAdminUserById(int id)
+        {
+            return _context.Adminusers.Where(au => au.Id == id).FirstOrDefault();
         }
     }
 }
