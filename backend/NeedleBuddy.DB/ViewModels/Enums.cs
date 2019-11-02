@@ -11,4 +11,9 @@ namespace NeedleBuddy.DB.ViewModels
         public static string NotFound = "NotFound";
         public static string Found = "Found";
     }
+
+    public static class UserRole
+    {
+        public static string Admin = "Admin";
+    }
 }
