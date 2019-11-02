@@ -9,6 +9,7 @@ namespace NeedleBuddy.API.AuthService
     public interface IUserService
     {
         UserViewModel Authenticate(string UserName, string Password);
-        UserViewModel GetMyCredentials(int Id);
+        UserViewModel GetCredentialsById(int Id);
+        UserViewModel GetCredentialsByUsername(string userName);
     }
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,8 +13,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NeedleBuddy.API.AuthService;
 using NeedleBuddy.DB;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace NeedleBuddy.API
 {
@@ -30,12 +35,28 @@ namespace NeedleBuddy.API
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
-            // TODO - Pass this in from a secret file
             services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(Configuration.GetConnectionString("NeedleBuddyDatabase")));
-
+            services.AddScoped<IUserService, UserService>(us => new UserService(us.GetRequiredService<IRepository>()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NeedleBuddy API", Version = "v1" });
+            });
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TheMostSecureClientSecretInTheWorld")),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
         }
 
@@ -51,6 +72,7 @@ namespace NeedleBuddy.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseSwagger();
