@@ -53,13 +53,19 @@ namespace NeedleBuddy.DB
         public List<Pickuprequest> FindPickupRequestsInDateRange(DateTime start, DateTime end)
         {
             List<Pickuprequest> rangedPickups = new List<Pickuprequest>();
-            //_context.Pickuprequest.Where(record => record.)
-            return null;
+            rangedPickups = _context.Pickuprequest.Where(record => record.LastModified >= start && record.LastModified <= end).ToList(); 
+            return rangedPickups;
         }
 
         public Pickuprequest UpdatePickupRequest(int id, int count, Enums.PickupStatus status)
         {
-            throw new NotImplementedException();
+            Pickuprequest item = _context.Pickuprequest.FirstOrDefault(x => x.Id == id);
+
+            if(item != null)
+            {
+                item.Count = count;
+                item.Status = status;
+            }
         }
     }
 }

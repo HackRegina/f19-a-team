@@ -15,6 +15,8 @@ namespace NeedleBuddy.DB.ViewModels
         public float Location_Lat { get; set; }
         public float Location_Long { get; set; }
 
+        public DateTime? LastModified { get; set; }
+
 //        ID: Integer
 //Phone_Number: String
 //Description: String(could be almost anything)
