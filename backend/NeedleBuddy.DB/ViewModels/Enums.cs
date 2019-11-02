@@ -5,13 +5,10 @@ using System.Threading.Tasks;
 
 namespace NeedleBuddy.DB.ViewModels
 {
-    public class Enums
+    public static class PickupStatus
     {
-        public enum PickupStatus
-        {
-            Pending,
-            NotFound,
-            Found
-        }
+        public static string Pending = "Pending";
+        public static string NotFound = "NotFound";
+        public static string Found = "Found";
     }
 }
