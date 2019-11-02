@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using NeedleBuddy.DB.ViewModels;
 
 namespace NeedleBuddy.DB
 {
     public class Repository : IRepository
     {
-        public Repository()
+        private NeedleBuddyContext _context;
+        public static Repository CreateRepository(string connectionString)
         {
-            // TODO
+            return new Repository(connectionString);
+        }
+
+        private Repository(string connectionString)
+        {
+            var contextBuilder = new DbContextOptionsBuilder<NeedleBuddyContext>();
+            contextBuilder.UseNpgsql(connectionString);
+            _context = new NeedleBuddyContext(contextBuilder.Options);
         }
 
         public PickupRequestViewModel CreatePickupRequest(PickupRequestViewModel prvm)

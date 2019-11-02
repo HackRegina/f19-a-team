@@ -52,3 +52,4 @@ baseline.json
 /backend/NeedleBuddy.DB/bin/Debug/netcoreapp3.0
 /backend/NeedleBuddy.API/NeedleBuddy.API.csproj.user
 /backend/.vs/NeedleBuddy/config
+/backend/.vs/NeedleBuddy/DesignTimeBuild

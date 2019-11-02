@@ -28,8 +28,8 @@ namespace NeedleBuddy.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            // TODO
-            //services.AddScoped<IRepository, Repository>(/*Build a repository here*/);
+            // TODO - Pass this in from a secret file
+            services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(null));
 
             services.AddSwaggerGen(c =>
             {
