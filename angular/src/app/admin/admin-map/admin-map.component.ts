@@ -8,7 +8,7 @@ import OSM from 'ol/source/OSM';
 import {transform, transformExtent} from 'ol/proj';
 import VectorSource from 'ol/source/Vector';
 import {Point} from 'ol/geom';
-import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
+import {Circle, Fill, Stroke, Style} from 'ol/style';
 
 @Component({
   selector: 'app-admin-map',
@@ -43,16 +43,20 @@ export class AdminMapComponent implements OnInit {
   }
 
   private createNewMapPoint(latitude: number, longitude: number): Feature {
-    return new Feature({
-      geometry: new Point(transform([longitude, latitude], 'EPSG:4326', 'EPSG:3857')),
-      style: new Style({
-        image: new CircleStyle({
-          radius: 8,
-          fill: new Fill({color: '#cc0007'}),
-          stroke: new Stroke({ color: '#ff0007', width: 2 })
+    const mapPoint: Feature = new Feature({
+      geometry: new Point(transform([longitude, latitude], 'EPSG:4326', 'EPSG:3857'))
+    });
+    mapPoint.setStyle(
+      new Style({
+        image: new Circle({
+          fill: new Fill({ color: [255,0,0,1] }),
+          stroke: new Stroke({ color: [0,0,0,1] }),
+          radius: 5
         })
       })
-    });
+    );
+
+    return mapPoint;
   }
 
 }

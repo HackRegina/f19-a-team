@@ -50,16 +50,14 @@ export class MapComponent implements OnInit {
       view: this.view
     });
 
-    this.currentLocationMarker = new Feature({
-      geometry: null,
-      style: new Style({
-        image: new CircleStyle({
-          radius: 6,
-          fill: new Fill({color: '#3399CC'}),
-          stroke: new Stroke({ color: '#fff', width: 2 })
-        })
+    this.currentLocationMarker = new Feature({geometry: null});
+    this.currentLocationMarker.setStyle(new Style({
+      image: new CircleStyle({
+        radius: 6,
+        fill: new Fill({color: '#3399CC'}),
+        stroke: new Stroke({ color: '#fff', width: 2 })
       })
-    });
+    }));
 
     this.currentPositionLayer = new OlVector({
       map: this.map,
