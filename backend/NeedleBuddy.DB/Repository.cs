@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using NeedleBuddy.DB.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using NeedleBuddy.DB;
+using System.Linq;
 
 namespace NeedleBuddy.DB
 {
@@ -21,36 +22,42 @@ namespace NeedleBuddy.DB
             contextBuilder.UseNpgsql(connectionString);
             _context = new NeedleBuddyContext(contextBuilder.Options);
         }
-        
+
         public Pickuprequest CreatePickupRequest(Pickuprequest prm)
         {
             Pickuprequest dbResponse = new Pickuprequest();
-            using(var _context = new NeedleBuddyContext())
-            {
-                _context.Add(prm);
-                _context.SaveChanges();
-                dbResponse = _context.Pickuprequest.Find(prm.Id);
-            }
+
+
+            _context.Add(prm);
+            _context.SaveChanges();
+            dbResponse = _context.Pickuprequest.Find(prm.Id);
+
             return dbResponse;
         }
 
-        public List<DropOffLocation> FindAllDropoffLocations()
+        public List<Dropofflocation> FindAllDropoffLocations()
         {
             List<Dropofflocation> dropLocs = new List<Dropofflocation>();
-            using (var _context = new )
+            dropLocs = _context.Dropofflocation.ToListAsync().Result;
+            return dropLocs;
+
         }
 
-        public List<PickupRequestViewModel> FindAllPickupRequests()
+        public List<Pickuprequest> FindAllPickupRequests()
         {
-            throw new NotImplementedException();
+            List<Pickuprequest> allPickUps = new List<Pickuprequest>();
+            allPickUps = _context.Pickuprequest.ToListAsync().Result;
+            return allPickUps;
         }
 
-        public List<PickupRequestViewModel> FindPickupRequestsInDateRange(DateTime start, DateTime end)
+        public List<Pickuprequest> FindPickupRequestsInDateRange(DateTime start, DateTime end)
         {
-            throw new NotImplementedException();
+            List<Pickuprequest> rangedPickups = new List<Pickuprequest>();
+            //_context.Pickuprequest.Where(record => record.)
+            return null;
         }
 
-        public PickupRequestViewModel UpdatePickupRequest(int id, int count, Enums.PickupStatus status)
+        public Pickuprequest UpdatePickupRequest(int id, int count, Enums.PickupStatus status)
         {
             throw new NotImplementedException();
         }
