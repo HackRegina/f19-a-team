@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   this.authService.login(this.formGroup.get('username').value,this.formGroup.get('password').value).pipe(first())
       .subscribe(
         data => {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/f19-a-team/admin']);
         }, error => {
           console.error(error);
         });

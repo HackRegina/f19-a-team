@@ -15,7 +15,7 @@ export class RequestMapComponent implements OnInit {
   }
 
   public clickRequestPickup(): void {
-    this.router.navigate(['/request']);
+    this.router.navigate(['/f19-a-team/request']);
   }
 
 }

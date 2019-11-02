@@ -31,7 +31,7 @@ export class AdminMapComponent implements OnInit {
         this.map = map;
         this.map.on("click", event => {
           map.forEachFeatureAtPixel(event.pixel, (feature, layer) => {
-            this.router.navigate(['/admin/needle-pickup']);
+            this.router.navigate(['/f19-a-team/admin/needle-pickup']);
           })
         });
         this.initPickupRequestLayer(map);

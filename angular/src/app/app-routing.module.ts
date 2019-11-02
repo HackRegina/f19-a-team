@@ -7,15 +7,19 @@ import {NeedlePickupComponent} from "./admin/needle-pickup/needle-pickup.compone
 import {LoginComponent} from "./admin/login/login.component";
 
 const routes: Routes = [
-  { path: 'map', component: RequestMapComponent },
-  { path: 'request', component: PickupRequestComponent },
-  { path: 'admin' , children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'pickup-map', component: AdminMapComponent },
-      { path: 'needle-pickup', component: NeedlePickupComponent },
-      { path: '', redirectTo: '/admin/pickup-map', pathMatch: 'full' }
+  { path: 'f19-a-team', children: [
+      { path: 'map', component: RequestMapComponent },
+      { path: 'request', component: PickupRequestComponent },
+      { path: 'admin' , children: [
+          { path: 'login', component: LoginComponent },
+          { path: 'pickup-map', component: AdminMapComponent },
+          { path: 'needle-pickup', component: NeedlePickupComponent },
+          { path: '', redirectTo: '/f19-a-team/admin/pickup-map', pathMatch: 'full' }
+        ]},
+      { path: '', redirectTo: '/f19-a-team/map', pathMatch: 'full' }
     ]},
-  { path: '', redirectTo: '/map', pathMatch: 'full' }
+  { path: '', redirectTo: '/f19-a-team/map', pathMatch: 'full' }
+
 ];
 
 @NgModule({
