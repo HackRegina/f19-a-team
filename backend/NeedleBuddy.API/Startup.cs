@@ -33,6 +33,7 @@ namespace NeedleBuddy.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string signingKey = Configuration.GetValue<string>("SigningKey");
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers();
             services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(Configuration.GetConnectionString("NeedleBuddyDatabase")));
@@ -53,7 +54,7 @@ namespace NeedleBuddy.API
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("TheMostSecureClientSecretInTheWorld")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(signingKey)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
