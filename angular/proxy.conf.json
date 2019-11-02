@@ -1,6 +1,6 @@
 {
   "/posts": {
-    "target": "https://example.com",
+    "target": "https://needlebuddy.azurewebsites.net",
     "secure": true,
     "pathRewrite": {
       "^/posts": ""
