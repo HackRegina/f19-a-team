@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NeedleBuddy.API.AuthService;
+using NeedleBuddy.API.MessageService;
 using NeedleBuddy.DB;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -38,6 +39,7 @@ namespace NeedleBuddy.API
             services.AddControllers();
             services.AddScoped<IRepository, Repository>(r => Repository.CreateRepository(Configuration.GetConnectionString("NeedleBuddyDatabase")));
             services.AddScoped<IUserService, UserService>(us => new UserService(us.GetRequiredService<IRepository>()));
+            services.AddScoped<ISMSService, SMSService>(ss => new SMSService(Configuration.GetValue<string>("SwiftBaseUrl"), ss.GetRequiredService<IRepository>()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "NeedleBuddy API", Version = "v1" });
@@ -58,6 +60,16 @@ namespace NeedleBuddy.API
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200/",
+                                        "https://localhost:4200/",
+                                        "https://hackreginahackathon2019.firebaseapp.com");
+                });
             });
         }
 
@@ -87,6 +99,8 @@ namespace NeedleBuddy.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseCors("AllowLocalhost");
         }
     }
 }

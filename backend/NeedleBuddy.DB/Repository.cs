@@ -97,5 +97,10 @@ namespace NeedleBuddy.DB
         {
             return _context.Clientsecret.Where(cs => cs.Id == 0).FirstOrDefault();
         }
+
+        public Clientsecret GetSMSsecret()
+        {
+            return _context.Clientsecret.Where(cs => cs.Id == 1).FirstOrDefault();
+        }
     }
 }

@@ -20,9 +20,9 @@ namespace NeedleBuddy.DB
         [StringLength(8)]
         public string Status { get; set; }
         [Column("location_lat")]
-        public double? LocationLat { get; set; }
+        public double LocationLat { get; set; }
         [Column("location_long")]
-        public double? LocationLong { get; set; }
+        public double LocationLong { get; set; }
         [Column("last_modified", TypeName = "date")]
         public DateTime? LastModified { get; set; }
         [Key]

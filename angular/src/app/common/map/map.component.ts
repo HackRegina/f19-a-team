@@ -66,6 +66,14 @@ export class MapComponent implements OnInit {
       })
     });
 
+    this.map.on("moveend", event => {
+      this.currentPositionLayer.getSource().getFeatures().forEach((feature) => {
+        const radius = this.valueRange(18 - this.map.getView().getResolution(), 5, 15);
+        feature.getStyle().getImage().setRadius(radius)
+      });
+
+      this.currentPositionLayer.getSource().changed();
+    });
     this.mapService.setMap(this.map);
   }
 
@@ -97,6 +105,15 @@ export class MapComponent implements OnInit {
       }
 
     });
+  }
+
+  private valueRange(value: number, min: number, max: number) {
+    if(value < min) {
+      return min;
+    } else if (value > max) {
+      return max;
+    }
+    return value;
   }
 
 }

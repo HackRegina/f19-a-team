@@ -19,12 +19,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: ztcyedrwldzsao
---
-
-
---
 -- TOC entry 3852 (class 0 OID 0)
 -- Dependencies: 3
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: ztcyedrwldzsao
@@ -146,7 +140,7 @@ INSERT INTO public.adminusers OVERRIDING SYSTEM VALUE VALUES (1, 'apss', '2c26b4
 --
 
 INSERT INTO public.clientsecret VALUES (0, 'TheMostSecureClientSecretInTheWorld');
-
+INSERT INTO public.clientsecret VALUES (1, '4QJ8LW066P36qjx783PTR1ofJnSph3Vv');
 
 --
 -- TOC entry 3856 (class 0 OID 0)
