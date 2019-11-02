@@ -19,12 +19,14 @@ export class MapComponent implements OnInit {
 
   private view: View;
   private geolocation: Geolocation;
+  private currentLocationMarker: Feature;
   private currentPositionLayer: OlVector;
 
   constructor() { }
 
   ngOnInit(): void {
     this.initMap();
+    this.initGeolocation();
   }
 
   private initMap(): void {
@@ -55,14 +57,23 @@ export class MapComponent implements OnInit {
       })
     });
 
-    this.currentPositionLayer = new OlVector({
-      map: this.map,
-      source: new VectorSource({
-        features: [positionMarker]
+    this.currentLocationMarker = new Feature({
+      geometry: null,
+      style: new Style({
+        image: new CircleStyle({
+          radius: 6,
+          fill: new Fill({color: '#3399CC'}),
+          stroke: new Stroke({ color: '#fff', width: 2 })
+        })
       })
     });
 
-    this.initGeolocation();
+    this.currentPositionLayer = new OlVector({
+      map: this.map,
+      source: new VectorSource({
+        features: [positionMarker, this.currentLocationMarker]
+      })
+    });
   }
 
   private initGeolocation() {
@@ -74,12 +85,23 @@ export class MapComponent implements OnInit {
     });
 
     this.geolocation.setTracking(true);
-    this.geolocation.on('change', this.addCurrentLocationMarker());
+
+    this.geolocation.on('change:position', () => {
+      const coordinates = transform(this.geolocation.getPosition(), 'EPSG:4326', 'EPSG:3857');
+      console.log('coordinates > ', coordinates);
+      this.currentLocationMarker.setGeometry(coordinates ? new Point(coordinates) : null);
+      this.map.getView().animate({
+        center: coordinates,
+        duration: 2000,
+        zoom:12
+      });
+    });
   }
 
   private addCurrentLocationMarker(): void {
     console.log(this.geolocation);
     if(!this.geolocation || !this.geolocation.getPosition()) {
+      console.log("returning early", this.geolocation.getPostion());
       return;
     }
 
