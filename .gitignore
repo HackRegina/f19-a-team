@@ -48,3 +48,7 @@ baseline.json
 /.vs
 /backend/.vs/NeedleBuddy/v16
 /backend/NeedleBuddy.API/Properties
+/backend/NeedleBuddy.API/bin/Debug/netcoreapp3.0
+/backend/NeedleBuddy.DB/bin/Debug/netcoreapp3.0
+/backend/NeedleBuddy.API/NeedleBuddy.API.csproj.user
+/backend/.vs/NeedleBuddy/config
