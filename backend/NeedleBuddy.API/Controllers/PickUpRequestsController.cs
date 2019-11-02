@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeedleBuddy.DB;
@@ -10,6 +11,7 @@ using NeedleBuddy.DB.ViewModels;
 
 namespace NeedleBuddy.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PickUpRequestsController : ControllerBase
@@ -23,6 +25,7 @@ namespace NeedleBuddy.API.Controllers
         }
 
         [HttpPost()]
+        [AllowAnonymous]
         public ActionResult<PickupRequestViewModel> CreatePickupRequest(string Phone_Number, string Description, float Location_Lat, float Location_Long)
         {
             var prvm = new PickupRequestViewModel()

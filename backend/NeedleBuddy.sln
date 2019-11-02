@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedleBuddy.API", "NeedleBuddy.API\NeedleBuddy.API.csproj", "{B3AE69B1-5B10-4271-98AA-B8EC148BA048}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeedleBuddy.DB", "NeedleBuddy.DB\NeedleBuddy.DB.csproj", "{6A802C68-638A-4D04-B99A-AB2FF47C2242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeedleBuddy.DB", "NeedleBuddy.DB\NeedleBuddy.DB.csproj", "{6A802C68-638A-4D04-B99A-AB2FF47C2242}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{439173F7-9F5B-44F7-A6FA-691AB850C09A}"
+	ProjectSection(SolutionItems) = preProject
+		CreateTables.sql = CreateTables.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -24,15 +24,39 @@ namespace NeedleBuddy.API.Controllers
 
         [AllowAnonymous]
         [HttpPost("auth")]
-        public UserViewModel AuthenticateUser(UserViewModel uvm)
+        public UserViewModel AuthenticateUser(string userName, string password)
         {
-             return _users.Authenticate(uvm.UserName, uvm.Password);
+             return _users.Authenticate(userName, password);
+        }
+
+        [HttpGet("get")]
+        public ActionResult<UserViewModel> GetMyCredentials()
+        {
+            var userResponse = _users.GetCredentialsByUsername(User?.Identity?.Name);
+            if(userResponse == null)
+            {
+                return Forbid();
+            }
+            else
+            {
+                return userResponse;
+            }
         }
 
         [HttpGet("get/{id}")]
-        public UserViewModel GetUserByOwnId(int id)
+        public ActionResult<UserViewModel> GetUserByOwnId(int id)
         {
-            return _users.GetMyCredentials(id);
+            var userResponse = _users.GetCredentialsById(id);
+
+            // We might have more users eventually. Ask again at 5:30.
+            if (id != userResponse.Id && !User.IsInRole(UserRole.Admin))
+            {
+                return Forbid();
+            }
+            else
+            {
+                return userResponse;
+            }
         }
     }
 }

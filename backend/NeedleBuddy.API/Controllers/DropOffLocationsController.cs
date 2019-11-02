@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeedleBuddy.DB;
@@ -10,6 +11,7 @@ using NeedleBuddy.DB.ViewModels;
 
 namespace NeedleBuddy.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DropOffLocationsController : ControllerBase
@@ -23,6 +25,7 @@ namespace NeedleBuddy.API.Controllers
         }
 
         [HttpGet()]
+        [AllowAnonymous]
         public List<DropOffLocationViewModel> FindAllDropOffLocations()
         {
             List<DropOffLocationViewModel> dropLocsView = new List<DropOffLocationViewModel>();

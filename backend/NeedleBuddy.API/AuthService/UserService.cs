@@ -24,8 +24,6 @@ namespace NeedleBuddy.API.AuthService
             var user = _repository.GetAdminUserByUsernameAndHashedPassword(username, password);
             byte[] clientSecret = Encoding.UTF8.GetBytes(_repository.GetClientsecret().Clientsecret1);
 
-            
-
             if (user == null)
             {
                 return null;
@@ -49,7 +47,7 @@ namespace NeedleBuddy.API.AuthService
                         new Claim(ClaimTypes.Name, username),
                         new Claim(ClaimTypes.Role, user.Role)
                     }),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(clientSecret), SecurityAlgorithms.Sha256),
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(clientSecret), SecurityAlgorithms.HmacSha256Signature),
                     Expires = DateTime.UtcNow.AddDays(7)
                 };
 
@@ -60,9 +58,28 @@ namespace NeedleBuddy.API.AuthService
             }
         }
 
-        public UserViewModel GetMyCredentials(int Id)
+        public UserViewModel GetCredentialsById(int Id)
         {
             var databaseResponse = _repository.GetAdminUserById(Id);
+
+            return new UserViewModel()
+            {
+                Id = databaseResponse.Id,
+                UserName = databaseResponse.Username,
+                Password = String.Empty,
+                Role = databaseResponse.Role,
+                Token = String.Empty
+            };
+        }
+
+        public UserViewModel GetCredentialsByUsername(string userName)
+        {
+            if(userName == null)
+            {
+                return null;
+            }
+
+            var databaseResponse = _repository.GetAdminUserByUsername(userName);
 
             return new UserViewModel()
             {
