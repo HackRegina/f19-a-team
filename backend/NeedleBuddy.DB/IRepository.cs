@@ -10,7 +10,7 @@ namespace NeedleBuddy.DB
         public Pickuprequest CreatePickupRequest(Pickuprequest prm);
         public List<Pickuprequest> FindAllPickupRequests();
         public List<Dropofflocation> FindAllDropoffLocations();
-        public Pickuprequest UpdatePickupRequest(int id, int count, Enums.PickupStatus status);
+        public Pickuprequest UpdatePickupRequest(int id, int count, string status);
         public List<Pickuprequest> FindPickupRequestsInDateRange(DateTime start, DateTime end);
     }
 }

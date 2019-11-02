@@ -57,7 +57,7 @@ namespace NeedleBuddy.DB
             return rangedPickups;
         }
 
-        public Pickuprequest UpdatePickupRequest(int id, int count, Enums.PickupStatus status)
+        public Pickuprequest UpdatePickupRequest(int id, int count, string status)
         {
             Pickuprequest item = _context.Pickuprequest.FirstOrDefault(x => x.Id == id);
 
@@ -65,7 +65,12 @@ namespace NeedleBuddy.DB
             {
                 item.Count = count;
                 item.Status = status;
+
+                _context.Pickuprequest.Update(item);
+
+                _context.SaveChanges();
             }
+            return item;
         }
     }
 }

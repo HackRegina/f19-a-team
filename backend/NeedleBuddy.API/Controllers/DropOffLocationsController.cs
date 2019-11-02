@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NeedleBuddy.DB;
@@ -14,15 +15,19 @@ namespace NeedleBuddy.API.Controllers
     public class DropOffLocationsController : ControllerBase
     {
         private IRepository _repository;
-        public DropOffLocationsController(IRepository repository)
+        private IMapper _mapper;
+        public DropOffLocationsController(IRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         [HttpGet()]
         public List<DropOffLocationViewModel> FindAllDropOffLocations()
         {
-            throw new NotImplementedException();
+            List<DropOffLocationViewModel> dropLocsView
+            List<Dropofflocation> dropLocs = _repository.FindAllDropoffLocations();
+            _mapper.Map<List<PickupRequestViewModel>>(dropLocs)
         }
     }
 }
