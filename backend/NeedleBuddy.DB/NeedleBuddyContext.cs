@@ -15,7 +15,7 @@ namespace NeedleBuddy.DB
         {
         }
 
-        public virtual DbSet<Dropofflocation> Newtable { get; set; }
+        public virtual DbSet<Dropofflocation> Dropofflocation { get; set; }
         public virtual DbSet<Pickuprequest> Pickuprequest { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
