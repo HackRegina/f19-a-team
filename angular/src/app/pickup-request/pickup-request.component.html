@@ -1,26 +1,43 @@
 <div id="pickup-request-container" class="px-2">
   <span class="block text-gray-700 text-lg font-bold mb-6">Needle Pickup Request</span>
-  <form id="pickup-request">
+  <form id="pickup-request" [formGroup]="requestFormGroup" (submit)="submitRequest()">
     <div class="mb-4">
-      <span class="block text-gray-700 text-sm font-bold mb-2">
+      <span class="form-label">
         Location:
       </span>
     </div>
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
-        Description
+      <label class="form-label" for="description">
+        Description of Needle Location
       </label>
-      <textarea class="resize border h-20 rounded w-full focus:outline-none focus:shadow-outline" id="description"></textarea>
+      <textarea class="txt-area focus:outline-none focus:shadow-outline"
+                formControlName="description"
+                placeholder="Description"
+                id="description"></textarea>
     </div>
 
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="phone-number">
+      <label class="form-label" for="count">
+        Approx. Number of Needles Found
+      </label>
+      <input class="txt-input focus:outline-none focus:shadow-outline"
+             formControlName="count"
+             id="count"
+             type="number"
+             placeholder="Number">
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label" for="phone-number">
         Phone Number
       </label>
-      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700
-      leading-tight focus:outline-none focus:shadow-outline" id="phone-number" type="tel" placeholder="Phone Number">
+      <input class="txt-input focus:outline-none focus:shadow-outline"
+             formControlName="phoneNumber"
+             id="phone-number"
+             type="tel"
+             placeholder="Phone Number">
     </div>
-    <button class="btn btn-red">
+    <button class="btn btn-red" type="submit">
       Submit Request
     </button>
   </form>
