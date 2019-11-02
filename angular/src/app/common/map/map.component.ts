@@ -7,8 +7,8 @@ import VectorSource from 'ol/source/Vector';
 import OlVector from 'ol/layer/Vector';
 import {Point} from 'ol/geom';
 import {Circle as CircleStyle, Fill, Stroke, Style} from 'ol/style';
-import {MapService} from "../services/map/map.service";
-import {MapLocation} from "../data/map-location";
+import {MapService} from "../../services/map/map.service";
+import {MapLocation} from "../../data/map-location";
 
 @Component({
   selector: 'app-map',
