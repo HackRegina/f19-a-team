@@ -42,7 +42,7 @@ export class AdminMapComponent implements OnInit {
   public initPickupRequestLayer(map: Map) {
     const pickupRequests: Array<PickupRequest> = this.pickupRequestService.getPickupRequests();
     const requestPoints: Array<Feature> = pickupRequests.map(pickupRequest => {
-      return this.createNewMapPoint(pickupRequest.latitude,pickupRequest.longitude);
+      return this.createNewMapPoint(pickupRequest.location_Lat,pickupRequest.location_Long);
     });
 
     this.pickupRequestLayer = new OlVector({

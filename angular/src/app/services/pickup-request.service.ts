@@ -34,23 +34,23 @@ export class PickupRequestService {
       {
         description: "near the dumpster",
         count: 4,
-        phoneNumber: 3065555555,
-        latitude: 50.4412,
-        longitude: -104.6200,
+        phone_Number: 3065555555,
+        location_Lat: 50.4412,
+        location_Long: -104.6200,
       } as PickupRequest,
       {
         description: "at the end of the alley",
         count: 1,
-        phoneNumber: 3065555555,
-        latitude: 50.4452,
-        longitude: -104.6189,
+        phone_Number: 3065555555,
+        location_Lat: 50.4452,
+        location_Long: -104.6189,
       } as PickupRequest,
       {
         description: "under the stairs",
         count: 4,
-        phoneNumber: 3065555555,
-        latitude: 50.4482,
-        longitude: -104.6169,
+        phone_Number: 3065555555,
+        location_Lat: 50.4482,
+        location_Long: -104.6169,
       } as PickupRequest,
     ];
   }
