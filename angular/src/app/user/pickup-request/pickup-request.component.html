@@ -1,0 +1,59 @@
+<div id="pickup-request-container" class="px-2 pt-10">
+  <span class="block text-gray-700 text-lg font-bold mb-6">Needle Pickup Request</span>
+  <form id="pickup-request" [formGroup]="requestFormGroup" (submit)="submitRequest()">
+    <div class="mb-4" *ngIf="hasCurrentLocation()">
+      <span class="form-label">
+        Needle Location:
+      </span>
+      <span>
+        Current Location [
+        {{requestFormGroup.get('latitude').value | number : '1.1-5'}} ,
+        {{requestFormGroup.get('longitude').value | number : '1.1-5'}}]
+      </span>
+    </div>
+    <div class="mb-4" *ngIf="!hasCurrentLocation()">
+      <label class="form-label" for="address">
+        Needle Location Nearby Address:
+      </label>
+      <input class="txt-input focus:outline-none focus:shadow-outline"
+             formControlName="address"
+             id="address"
+             type="text"
+             placeholder="Address">
+    </div>
+    <div class="mb-4">
+      <label class="form-label" for="description">
+        Description of Needle Location
+      </label>
+      <textarea class="txt-area focus:outline-none focus:shadow-outline"
+                formControlName="description"
+                placeholder="Description"
+                id="description"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label" for="count">
+        Approx. Number of Needles Found
+      </label>
+      <input class="txt-input focus:outline-none focus:shadow-outline"
+             formControlName="count"
+             id="count"
+             type="number"
+             placeholder="Number">
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label" for="phone-number">
+        Phone Number
+      </label>
+      <input class="txt-input focus:outline-none focus:shadow-outline"
+             formControlName="phoneNumber"
+             id="phone-number"
+             type="tel"
+             placeholder="Phone Number">
+    </div>
+    <button class="btn btn-red" type="submit">
+      Submit Request
+    </button>
+  </form>
+</div>
