@@ -2,11 +2,12 @@
   height: 100%;
 }
 
-#btn-submit-request {
-  display: block;
-  background-color: #C53030;
-  color: white;
-  font-size: 20px;
-  padding: 10px 15px 10px 15px;
-  border: none;
+.btn {
+  @apply font-bold py-2 px-4 rounded;
+}
+.btn-red {
+  @apply bg-red-500 text-white;
+}
+.btn-red:hover {
+  @apply bg-red-700;
 }
